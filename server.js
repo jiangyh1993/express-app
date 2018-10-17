@@ -34,8 +34,12 @@ app.get("/", function(req, res) {
 });
 
 app.get("/form/:name", function(req, res) {
-  var person = req.params.name;
-  res.render("form", { person: person });
+  var data = { age: 29, bobbies: ["eating", "playing"] };
+  res.render("form", { data: data });
+});
+
+app.get("/about", function(req, res) {
+  res.render("about");
 });
 
 app.get("/profile/:id", function(req, res) {
