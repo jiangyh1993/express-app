@@ -4,6 +4,7 @@ var fs = require("fs");
 var multer = require("multer");
 
 var app = express();
+app.set("view engine", "ejs");
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -32,9 +33,9 @@ app.get("/", function(req, res) {
   res.send("home page: ");
 });
 
-app.get("/form", function(req, res) {
-  var form = fs.readFileSync("./form.html", { encoding: "utf8" });
-  res.send(form);
+app.get("/form/:name", function(req, res) {
+  var person = req.params.name;
+  res.render("form", { person: person });
 });
 
 app.get("/profile/:id", function(req, res) {
